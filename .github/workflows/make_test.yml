@@ -30,12 +30,12 @@ jobs:
           fi
       - name: Make OpenBLAS
         run: |
-          make CC=cc FC=gfortran TARGET=ARMV8
+          make CC=cc FC=gfortran
           
       
       - name: Install OpenBLAS
         run: |
-          make install PREFIX=/opt/OpenBLAS TARGET=ARMV8
+          make install PREFIX=/opt/OpenBLAS
           
       - name: Run tests
         timeout-minutes: 60
