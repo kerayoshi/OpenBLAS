@@ -10,11 +10,6 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-latest]
-        fortran: [gfortran]
-        build: [make]
-        exclude:
-          - os: macos-latest
-            fortran: flang
 
     steps:
       - name: Checkout repository
@@ -36,10 +31,11 @@ jobs:
       - name: Make OpenBLAS
         run: |
           make CC=cc FC=gfortran TARGET=ARMV8
+          
       
-       - name: Install OpenBLAS
+      - name: Install OpenBLAS
         run: |
-          make install PREFIX=./ TARGET=ARMV8
+          make install PREFIX=/opt/OpenBLAS TARGET=ARMV8
           
       - name: Run tests
         timeout-minutes: 60
