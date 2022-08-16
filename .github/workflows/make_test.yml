@@ -35,19 +35,18 @@ jobs:
       
       - name: Install OpenBLAS
         run: |
-          make install PREFIX=/opt/OpenBLAS
+          make install PREFIX=./
           
       - name: Run tests
         timeout-minutes: 60
         run: |
-          MAKE_FLAGS='DYNAMIC_ARCH=1 USE_OPENMP=0'
           echo "::group::Tests in 'test' directory"
-          make -C test $MAKE_FLAGS FC=gfortran
+          make -C test 
           echo "::endgroup::"
           echo "::group::Tests in 'ctest' directory"
-          make -C ctest $MAKE_FLAGS FC=gfortran
+          make -C ctest 
           echo "::endgroup::"
           echo "::group::Tests in 'utest' directory"
-          make -C utest $MAKE_FLAGS FC=gfortran
-          echo "::endgroup::"
+          make -C utest 
+          echo "::finish::"
            
